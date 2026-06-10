@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Macbeth — Marketing Website
 
-## Getting Started
+The public site for **Macbeth Photos**, a private memory cloud appliance.
+Print-journal / editorial aesthetic (Spectral + JetBrains Mono, terracotta on
+cream paper), built from the Claude Design `Website v2` mockup.
 
-First, run the development server:
+- **Framework:** Next.js 16 (App Router) + React 19
+- **Styling:** Tailwind CSS v4 + a ported design-token stylesheet (`src/app/globals.css`)
+- **Waitlist:** `POST /api/waitlist` → Neon Postgres (`@neondatabase/serverless`)
+- **Deploy target:** Vercel + Neon
+
+## Local development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # then paste your Neon DATABASE_URL
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The waitlist API auto-creates its table on first write, so no migration step
+is required. The table:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sql
+CREATE TABLE IF NOT EXISTS waitlist (
+  id         SERIAL PRIMARY KEY,
+  email      TEXT NOT NULL UNIQUE,
+  source     TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`source` records where the signup came from (`hero` or `order`).
 
-## Learn More
+## Deploying
 
-To learn more about Next.js, take a look at the following resources:
+### 1. Create the database (Neon)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Sign in at [neon.tech](https://neon.tech) and create a project.
+2. Copy the **pooled** connection string from *Connection Details*.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 2. Deploy the site (Vercel)
 
-## Deploy on Vercel
+1. Push `macbeth-web/` to its own GitHub repo.
+2. In [vercel.com](https://vercel.com) → **New Project** → import the repo.
+3. Add an environment variable: `DATABASE_URL` = your Neon string
+   (Production + Preview).
+4. Deploy. Vercel auto-detects Next.js — no extra config needed.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> Tip: from the Vercel dashboard you can also add the Neon integration
+> (**Storage → Neon**) and it will inject `DATABASE_URL` for you.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx             # fonts (Spectral, JetBrains Mono) + metadata
+│   ├── globals.css            # design tokens + all section styles, responsive
+│   ├── page.tsx               # the full single-page site (chapters 01–06)
+│   └── api/waitlist/route.ts  # POST handler → Neon insert
+├── components/
+│   └── Waitlist.tsx           # client-side email capture form
+└── lib/
+    └── db.ts                  # Neon client + table bootstrap
+public/
+├── device-on-shelf.svg        # Fig. 1 — hero product illustration
+└── device-detail.svg          # Fig. 2 — detail product illustration
+```
+
+Replace the two SVGs in `public/` with real product photography when it's
+ready — they're sized to the `.fig-slot` containers (cover fit), so a JPEG/PNG
+drops in cleanly.
