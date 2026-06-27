@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080" font-family="Helvetica, Arial, sans-serif">
+  <!-- violet field -->
+  <rect width="1080" height="1080" fill="#9b6bff" />
+
+  <!-- patterned woman silhouette (profile facing left) -->
+  <g>
+    <!-- black silhouette body -->
+    <path fill="#17131f" d="
+      M 800 150
+      C 922 150, 992 252, 996 362
+      C 1000 462, 980 524, 940 544
+      C 1006 604, 1016 724, 1016 980
+      L 566 980
+      C 572 740, 596 656, 700 606
+      C 706 586, 700 566, 694 549
+      C 688 538, 700 522, 706 512
+      C 713 506, 705 498, 700 494
+      C 694 488, 688 486, 678 484
+      C 666 482, 653 477, 650 468
+      C 648 459, 664 454, 674 449
+      C 684 445, 687 439, 689 429
+      C 693 404, 700 360, 712 320
+      C 726 258, 760 190, 800 150 Z" />
+
+    <!-- HAIR · violet circle pattern (parts over the bg are invisible, so it self-clips) -->
+    <g fill="#9b6bff">
+      <circle cx="838" cy="232" r="36" />
+      <circle cx="912" cy="250" r="27" />
+      <circle cx="876" cy="306" r="32" />
+      <circle cx="820" cy="300" r="23" />
+      <circle cx="950" cy="318" r="22" />
+      <circle cx="900" cy="372" r="29" />
+      <circle cx="842" cy="372" r="21" />
+      <circle cx="958" cy="392" r="16" />
+      <circle cx="894" cy="446" r="24" />
+      <circle cx="844" cy="446" r="18" />
+      <circle cx="938" cy="452" r="14" />
+      <circle cx="824" cy="356" r="13" />
+      <circle cx="952" cy="250" r="13" />
+      <circle cx="812" cy="250" r="14" />
+      <circle cx="884" cy="250" r="14" />
+    </g>
+
+    <!-- SHOULDER · violet stripes + triangles + dots (self-clips to the body) -->
+    <g stroke="#9b6bff" stroke-width="11" fill="none" stroke-linecap="round">
+      <path d="M620 700 C 640 760, 632 840, 648 940" />
+      <path d="M660 686 C 682 752, 672 844, 690 952" />
+      <path d="M700 686 C 722 752, 712 848, 730 956" />
+      <path d="M742 690 C 764 756, 754 850, 772 956" />
+    </g>
+    <g stroke="#9b6bff" stroke-width="10" fill="none">
+      <path d="M812 690 q120 16 150 70" />
+      <path d="M806 724 q120 16 150 70" />
+      <path d="M800 758 q120 16 150 70" />
+    </g>
+    <g fill="#9b6bff">
+      <circle cx="930" cy="690" r="30" />
+      <circle cx="700" cy="900" r="20" />
+      <circle cx="640" cy="918" r="13" />
+      <path d="M860 900 l34 0 l-17 30 z" />
+      <path d="M905 855 l26 0 l-13 24 z" />
+      <path d="M612 860 l24 0 l-12 22 z" />
+    </g>
+
+    <!-- earring -->
+    <circle cx="724" cy="556" r="11" fill="none" stroke="#9b6bff" stroke-width="6" />
+  </g>
+
+  <!-- headline -->
+  <g font-weight="800" letter-spacing="-3">
+    <text x="60" y="400" font-size="80" fill="#17131f">Own your</text>
+    <text x="60" y="484" font-size="80" fill="#17131f">memories.</text>
+    <text x="60" y="600" font-size="80" fill="#ffffff">Don&apos;t rent</text>
+    <text x="60" y="684" font-size="80" fill="#ffffff">them.</text>
+  </g>
+
+  <!-- coming soon -->
+  <text x="62" y="770" font-size="33" font-weight="700" fill="#17131f">bckup<tspan fill="#ffffff">.</tspan> <tspan opacity="0.72" font-weight="600">— coming soon</tspan></text>
+</svg>

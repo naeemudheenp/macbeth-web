@@ -526,9 +526,15 @@ a {
   gap: 10px;
   flex-wrap: wrap;
 }
-.waitlist input {
+.waitlist-field {
+  position: relative;
   flex: 1;
   min-width: 200px;
+  display: flex;
+}
+.waitlist input {
+  flex: 1;
+  min-width: 0;
   background: var(--surface);
   border: 1px solid var(--line);
   color: var(--ink);
@@ -545,6 +551,28 @@ a {
 }
 .waitlist input::placeholder {
   color: var(--ink-mute);
+}
+/* arrow submit lives inside the input — mobile only */
+.waitlist-arrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 980px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+.waitlist-arrow:disabled {
+  opacity: 0.55;
+  cursor: default;
 }
 .waitlist .msg {
   font-size: 13.5px;
@@ -609,6 +637,10 @@ a {
 }
 .hero .waitlist input:focus {
   border-color: #17131f;
+}
+.hero .waitlist-arrow {
+  background: #17131f;
+  color: #fff;
 }
 .hero .waitlist .msg {
   color: rgba(23, 19, 31, 0.72);
@@ -701,5 +733,26 @@ a {
   }
   .step-text p {
     max-width: none;
+  }
+  /* mobile: hide the scrolling carousel and the hero sticker */
+  .marquee {
+    display: none;
+  }
+  .sticker {
+    display: none;
+  }
+  /* mobile: drop the standalone CTA, use the arrow inside the input */
+  .waitlist-cta {
+    display: none;
+  }
+  .waitlist-field {
+    min-width: 0;
+    width: 100%;
+  }
+  .waitlist input {
+    padding-right: 52px;
+  }
+  .waitlist-arrow {
+    display: inline-flex;
   }
 }

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
+  <!-- violet field (fills the circular crop) -->
+  <rect width="1080" height="1080" fill="#9b6bff" />
+  <!-- soft inner light -->
+  <circle cx="540" cy="470" r="460" fill="#ffffff" opacity="0.06" />
+  <!-- the bckup "b." mark, scaled up from the favicon geometry -->
+  <g transform="translate(540 540) scale(13) translate(-34.6 -32)" fill="#17131f">
+    <rect x="19" y="11" width="7.5" height="42" rx="3.75" />
+    <circle cx="31" cy="40" r="12" fill="none" stroke="#17131f" stroke-width="7.5" />
+    <circle cx="50" cy="49" r="4" />
+  </g>
+</svg>

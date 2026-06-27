@@ -48,20 +48,43 @@ export default function Waitlist({
   return (
     <form className="waitlist" onSubmit={onSubmit} noValidate id={id}>
       <div className="waitlist-row">
-        <input
-          type="email"
-          name="email"
-          inputMode="email"
-          autoComplete="email"
-          required
-          placeholder={placeholder}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          aria-label="Email address"
-        />
+        <div className="waitlist-field">
+          <input
+            type="email"
+            name="email"
+            inputMode="email"
+            autoComplete="email"
+            required
+            placeholder={placeholder}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            aria-label="Email address"
+          />
+          <button
+            type="submit"
+            className="waitlist-arrow"
+            disabled={status === "loading"}
+            aria-label={cta}
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
+          </button>
+        </div>
         <button
           type="submit"
-          className="btn-ink"
+          className="btn-ink waitlist-cta"
           disabled={status === "loading"}
         >
           {status === "loading" ? "Joining…" : cta}
