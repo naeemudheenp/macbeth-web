@@ -3,28 +3,21 @@
 import { useEffect, useState } from "react";
 
 /**
- * Sticky nav that is transparent (and inverted to read on the violet hero)
- * while the hero is in view, then fades to its solid dark bar once the hero
- * scrolls away. Driven by an IntersectionObserver on the hero section.
+ * Floating pill navbar inspired by ente.com — white bg, rounded, shadow on scroll.
  */
 export default function SiteHeader() {
-  const [overHero, setOverHero] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const hero = document.getElementById("what");
-    if (!hero) return;
-    const io = new IntersectionObserver(
-      ([entry]) =>
-        setOverHero(entry.isIntersecting && entry.intersectionRatio >= 0.55),
-      { threshold: [0, 0.55, 1] },
-    );
-    io.observe(hero);
-    return () => io.disconnect();
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
-    <header className={`nav${overHero ? " over-hero" : ""}`}>
-      <div className="nav-in">
+    <header className={`nav${scrolled ? " scrolled" : ""}`}>
+      <div className="nav-pill">
         <a className="brand" href="#what">
           bckup<i>.</i>
         </a>
@@ -35,7 +28,7 @@ export default function SiteHeader() {
         </nav>
         <span className="gap" />
         <a className="order-link" href="#join">
-          Join
+          Join waitlist
         </a>
       </div>
     </header>

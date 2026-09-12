@@ -2,13 +2,15 @@
  * Hand-drawn doodle set. Strokes use `currentColor`, so the accent color is
  * set via CSS (`color: var(--accent)`) on a wrapping element. Intentionally
  * loose / wobbly for a marker-doodle feel.
+ *
+ * Adapted for white backgrounds — slightly thicker strokes for visibility.
  */
 type P = { className?: string };
 
 const base = {
   fill: "none",
   stroke: "currentColor",
-  strokeWidth: 4.5,
+  strokeWidth: 4,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
   "aria-hidden": true,
@@ -89,7 +91,7 @@ export function DoodleScan({ className }: P) {
       <rect x="52" y="32" width="12" height="12" rx="2" />
       <rect x="36" y="48" width="12" height="12" rx="2" />
       <path d="M52 50 h12 v12" />
-      <line x1="32" y1="70" x2="68" y2="70" stroke-opacity="0.55" />
+      <line x1="32" y1="70" x2="68" y2="70" strokeOpacity="0.4" />
     </svg>
   );
 }
