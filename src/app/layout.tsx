@@ -1,14 +1,10 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
+/**
+ * The design file sets type in the system stack (SF Pro on Apple hardware,
+ * Helvetica Neue elsewhere), so no webfont is loaded.
+ */
 export const metadata: Metadata = {
   title: "bckup — All your photos, backed up at home",
   description:
@@ -21,13 +17,17 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

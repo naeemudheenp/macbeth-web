@@ -1,36 +1,22 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
 /**
- * Floating pill navbar inspired by ente.com — white bg, rounded, shadow on scroll.
+ * Sticky product nav — 52px, translucent white, 1000px column.
+ * Ported from "bckup Site.dc.html".
  */
 export default function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <header className={`nav${scrolled ? " scrolled" : ""}`}>
-      <div className="nav-pill">
-        <a className="brand" href="#what">
-          bckup<i>.</i>
+    <header className="site-header">
+      <nav className="nav">
+        <a className="nav-brand" href="#what">
+          bckup
         </a>
-        <nav>
-          <a href="#what">What</a>
+        <div className="nav-links">
           <a href="#why">Why</a>
           <a href="#how">How</a>
-        </nav>
-        <span className="gap" />
-        <a className="order-link" href="#join">
-          Join waitlist
-        </a>
-      </div>
+          <a className="is-accent" href="#join">
+            Join waitlist
+          </a>
+        </div>
+      </nav>
     </header>
   );
 }
