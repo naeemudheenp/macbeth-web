@@ -6,13 +6,13 @@ import "./globals.css";
  * Helvetica Neue elsewhere), so no webfont is loaded.
  */
 export const metadata: Metadata = {
-  title: "bckup — All your photos, backed up at home",
+  title: "bckup — For photographers",
   description:
-    "bckup is a little device that keeps every photo you take — at home, on storage you own. No subscription. No one else's cloud. A Macbeth company.",
+    "The bckup box plugs into your hard disk and backs up every shoot automatically. Then it runs the rest of the studio: automation, better galleries, camera integration. A Macbeth company.",
   openGraph: {
-    title: "bckup — All your photos, backed up at home",
+    title: "bckup — For photographers",
     description:
-      "Every photo you take, kept at home on storage you own. No subscription, no one else's cloud.",
+      "Plug your hard disk into the bckup box and every shoot backs up automatically. No subscription.",
     type: "website",
   },
 };
