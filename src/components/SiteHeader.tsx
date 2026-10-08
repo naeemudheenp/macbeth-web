@@ -1,5 +1,5 @@
 /**
- * Sticky product nav — 52px, translucent white, 1000px column.
+ * Sticky product nav — 52px dark glass, 1000px column.
  * Links follow the page's question order.
  */
 export default function SiteHeader() {

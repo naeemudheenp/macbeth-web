@@ -1,180 +1,306 @@
+import ScrollFx from "@/components/ScrollFx";
 import SiteHeader from "@/components/SiteHeader";
 import Waitlist from "@/components/Waitlist";
 
 /**
- * The page reads like an FAQ: the hero asks the photographer's questions,
- * each section below answers one. Order:
- * hero (questions) → Q1 storage → storage solved → Q2 studio → FAQ → join → footer.
+ * The page reads like an FAQ told through a camera: the hero is a viewfinder
+ * and a film strip of the photographer's questions; each section answers one.
+ * Order: hero → Q1 storage → storage solved → Q2 studio → FAQ → join → footer.
  */
 export default function Home() {
   return (
     <div className="page">
+      <ScrollFx />
       <SiteHeader />
 
-      {/* ── hero: the questions ──────────────────────────────────────── */}
+      {/* ── hero: viewfinder + film strip of questions ───────────────── */}
       <section className="hero" id="top">
-        <div className="eyebrow">For photographers</div>
-        <h1>You&apos;re a great photographer.</h1>
-        <p className="hero-sub">
-          And we know what gets in the way of the work. So let&apos;s go
-          through it — one question at a time.
-        </p>
+        <div className="vf">
+          <div className="vf-scene" aria-hidden>
+            <div className="vf-sun" />
+            <div className="vf-ridge vf-ridge-back" />
+            <div className="vf-ridge vf-ridge-front" />
+          </div>
+          <span className="vf-corner tl" aria-hidden />
+          <span className="vf-corner tr" aria-hidden />
+          <span className="vf-corner bl" aria-hidden />
+          <span className="vf-corner br" aria-hidden />
+          <span className="vf-focus" aria-hidden />
 
-        <ol className="q-index">
-          <li>
-            <a href="#storage">
-              <span className="q-num">01</span>
-              <span className="q-text">
-                Where is every shoot supposed to live?
+          <div className="vf-readout vf-readout-top" aria-hidden>
+            <span>
+              <i className="rec" /> Auto backup on
+            </span>
+            <span className="hide-sm">RAW + JPG</span>
+          </div>
+
+          <div className="vf-copy">
+            <div className="eyebrow">For photographers</div>
+            <h1>
+              You&apos;re a <em>great</em> photographer.
+            </h1>
+            <p>
+              And we know what gets in the way of the work. Let&apos;s go
+              through it — one question at a time.
+            </p>
+          </div>
+
+          <div className="vf-readout vf-readout-bottom" aria-hidden>
+            <span>1/250</span>
+            <span>F2.8</span>
+            <span className="hide-sm">ISO 400</span>
+            <span className="meter hide-sm">
+              <i />
+            </span>
+            <span className="vf-frames">
+              <b data-count="2481">2,481</b> backed up
+            </span>
+          </div>
+        </div>
+
+        <div className="strip">
+          <div className="strip-track">
+            <a className="frame" href="#storage">
+              <span className="frame-top">
+                <span>01</span>
+                <span>Storage</span>
               </span>
-              <span className="q-arrow" aria-hidden>
-                ↓
-              </span>
+              <span className="frame-q">Where is every shoot supposed to live?</span>
+              <span className="frame-go">See the answer ↓</span>
             </a>
-          </li>
-          <li>
-            <a href="#studio">
-              <span className="q-num">02</span>
-              <span className="q-text">
+            <a className="frame" href="#studio">
+              <span className="frame-top">
+                <span>02</span>
+                <span>Studio</span>
+              </span>
+              <span className="frame-q">
                 Why does the rest of the studio still take all evening?
               </span>
-              <span className="q-arrow" aria-hidden>
-                ↓
-              </span>
+              <span className="frame-go">See the answer ↓</span>
             </a>
-          </li>
-        </ol>
+            <a className="frame" href="#join">
+              <span className="frame-top">
+                <span>03</span>
+                <span>Waitlist</span>
+              </span>
+              <span className="frame-q">So when can I get one?</span>
+              <span className="frame-go">Join the waitlist ↓</span>
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* ── Q1: storage ──────────────────────────────────────────────── */}
       <section className="qa" id="storage">
-        <div className="qa-label">Question 01 · Storage</div>
-        <h2>Where is every shoot supposed to live?</h2>
-
-        <div className="pain">
-          <p>
+        <div className="qa-head" data-reveal>
+          <div>
+            <div className="qa-label">
+              <span className="qa-num">01</span> Storage
+            </div>
+            <h2>Where is every shoot supposed to live?</h2>
+          </div>
+          <p className="pain">
             Cards full on Saturday. The laptop full by Monday. A stack of hard
-            drives in a drawer, and a quiet worry that the one shoot you forgot
+            drives in a drawer — and a quiet worry that the one shoot you forgot
             to copy is the one a client asks for.
           </p>
         </div>
 
-        <div className="answer">
+        <div className="answer-head" data-reveal>
           <div className="answer-tag">The answer</div>
-          <h3>The bckup box.</h3>
-          <p className="answer-lead">
-            Plug your hard disk into the bckup box. From then on, every photo
-            is backed up to it — automatically. No dragging folders, no
-            remembering, no subscription.
+          <h3>Meet the bckup box.</h3>
+          <p>
+            Plug your hard disk into it. From then on, every photo is backed up
+            — automatically. No dragging folders, no remembering, no
+            subscription.
           </p>
+        </div>
 
-          <div className="box-figure">
-            <BoxIllustration />
-          </div>
-
-          <div className="steps">
-            <div className="step">
-              <IconDrive />
-              <div className="step-label">Step 1</div>
-              <h4>Connect your drive</h4>
-              <p>
-                Use the hard disk you already own. It plugs straight into the
-                box.
-              </p>
+        <div className="stage" data-reveal>
+          <BoxStage />
+          <div className="stage-stats">
+            <div>
+              <b data-count="12408">12,408</b>
+              <span>photos backed up this month</span>
             </div>
-            <div className="step">
-              <IconPlug />
-              <div className="step-label">Step 2</div>
-              <h4>Plug in the box</h4>
-              <p>
-                Power it anywhere in the studio or at home. It joins your
-                network and waits.
-              </p>
+            <div>
+              <b>0</b>
+              <span>folders you had to drag</span>
             </div>
-            <div className="step">
-              <IconCheck />
-              <div className="step-label">Step 3</div>
-              <h4>It backs up. Always.</h4>
-              <p>
-                New photos land on your drive on their own. You get back to
-                shooting.
-              </p>
+            <div>
+              <b>$0</b>
+              <span>a month, forever</span>
             </div>
           </div>
         </div>
+
+        <ol className="timeline" data-reveal>
+          <li>
+            <span className="tl-dot" />
+            <span className="tl-num">01</span>
+            <h4>Connect your drive</h4>
+            <p>The hard disk you already own plugs straight into the box.</p>
+          </li>
+          <li>
+            <span className="tl-dot" />
+            <span className="tl-num">02</span>
+            <h4>Plug in the box</h4>
+            <p>Anywhere in the studio or at home. It joins your network.</p>
+          </li>
+          <li>
+            <span className="tl-dot" />
+            <span className="tl-num">03</span>
+            <h4>Never think about it</h4>
+            <p>New photos land on your drive on their own. Back to shooting.</p>
+          </li>
+        </ol>
       </section>
 
       {/* ── storage solved ───────────────────────────────────────────── */}
       <section className="solved">
-        <div className="solved-inner">
-          <div className="solved-mark" aria-hidden>
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path
-                d="M7 14.5l4.5 4.5L21 9.5"
-                stroke="currentColor"
-                strokeWidth="2.4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
+        <ul className="struck" data-reveal>
+          <li>
+            <span>Cards full on Saturday.</span>
+          </li>
+          <li>
+            <span>Laptop full by Monday.</span>
+          </li>
+          <li>
+            <span>Drives in a drawer.</span>
+          </li>
+          <li>
+            <span>The shoot you forgot to copy.</span>
+          </li>
+        </ul>
+        <h2 className="solved-word" data-reveal>
+          <span className="solved-pre">Storage:</span>{" "}
+          <span className="solved-done">
+            solved.
+            <svg viewBox="0 0 48 48" aria-hidden className="solved-tick">
+              <path d="M10 25l9 9 19-20" />
             </svg>
-          </div>
-          <h2>Storage: solved.</h2>
-          <p>
-            Every shoot, backed up automatically, on drives you own. Now for
-            the part that eats your evenings.
-          </p>
-          <ul className="solved-list">
-            <li>Automatic backup</li>
-            <li>Your own hard disks</li>
-            <li>Buy once, no plan</li>
-          </ul>
-        </div>
+          </span>
+        </h2>
+        <p className="solved-next">Now for the part that eats your evenings.</p>
       </section>
 
       {/* ── Q2: studio ───────────────────────────────────────────────── */}
-      <section className="qa" id="studio">
-        <div className="qa-label">Question 02 · The studio</div>
-        <h2>Why does the rest of the studio still take all evening?</h2>
+      <section className="studio" id="studio">
+        <div className="studio-inner">
+          <div className="qa-head" data-reveal>
+            <div>
+              <div className="qa-label">
+                <span className="qa-num">02</span> The studio
+              </div>
+              <h2>Why does the rest of the studio still take all evening?</h2>
+            </div>
+            <p className="pain">
+              Importing, renaming, sorting, exporting, uploading, sending
+              links. The shoot took two hours — the admin takes the rest of
+              the night.
+            </p>
+          </div>
 
-        <div className="pain">
-          <p>
-            Importing, renaming, sorting, exporting, uploading, sending
-            links. The shoot took two hours — the admin takes the rest of the
-            night.
-          </p>
-        </div>
+          <div className="answer-head" data-reveal>
+            <div className="answer-tag">The answer</div>
+            <h3>A studio that runs itself.</h3>
+            <p>Once your photos are safe, the box keeps working for you.</p>
+          </div>
 
-        <div className="answer">
-          <div className="answer-tag">The answer</div>
-          <h3>A studio that runs itself.</h3>
-          <p className="answer-lead">
-            Once your photos are safe, the box keeps working for you.
-          </p>
-
-          <div className="features">
-            <article className="feature">
-              <IconAuto />
-              <h4>Automation</h4>
-              <p>
-                Shoots sorted into folders by date and client, files renamed
-                your way, the busywork handled before you sit down.
-              </p>
+          <div className="bento">
+            {/* automation */}
+            <article className="tile tile-wide" data-reveal>
+              <div className="tile-copy">
+                <div className="tile-kicker">Automation</div>
+                <h4>The busywork, done before you sit down.</h4>
+                <p>
+                  Shoots sorted into folders by date and client, files renamed
+                  your way.
+                </p>
+              </div>
+              <div className="mock mock-files" aria-hidden>
+                <div className="mock-bar">
+                  <i />
+                  <i />
+                  <i />
+                  <span>Rahman Wedding / Ceremony</span>
+                </div>
+                {[
+                  ["DSC_0412.ARW", "2026-10-08_Rahman-Wedding_0412.ARW"],
+                  ["DSC_0413.ARW", "2026-10-08_Rahman-Wedding_0413.ARW"],
+                  ["DSC_0414.ARW", "2026-10-08_Rahman-Wedding_0414.ARW"],
+                  ["IMG_2201.CR3", "2026-10-07_Studio-Portraits_2201.CR3"],
+                ].map(([from, to]) => (
+                  <div className="file-row" key={from}>
+                    <span className="file-from">{from}</span>
+                    <span className="file-arrow">→</span>
+                    <span className="file-to">{to}</span>
+                  </div>
+                ))}
+              </div>
             </article>
-            <article className="feature">
-              <IconGallery />
-              <h4>Better gallery UX</h4>
-              <p>
-                Browse thousands of frames without the lag, and share
-                client galleries that look as good as your work.
-              </p>
+
+            {/* gallery */}
+            <article className="tile" data-reveal>
+              <div className="tile-copy">
+                <div className="tile-kicker">Better gallery UX</div>
+                <h4>Galleries as good as the work.</h4>
+                <p>
+                  Thousands of frames without the lag. Client galleries
+                  they&apos;ll actually enjoy picking from.
+                </p>
+              </div>
+              <div className="mock mock-gallery" aria-hidden>
+                <div className="g-grid">
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => (
+                    <span
+                      key={n}
+                      className={`ph ph-${((n - 1) % 6) + 1}${
+                        n === 2 || n === 7 ? " picked" : ""
+                      }`}
+                    />
+                  ))}
+                </div>
+                <div className="g-bar">
+                  <span>♥ Client picked 42 of 380</span>
+                  <span className="g-share">Share</span>
+                </div>
+              </div>
             </article>
-            <article className="feature">
-              <IconCamera />
-              <h4>Camera integration</h4>
-              <p>
-                Photos move from your camera to the box without a card reader
-                in between. Shoot, and it&apos;s already home.
-              </p>
+
+            {/* camera */}
+            <article className="tile" data-reveal>
+              <div className="tile-copy">
+                <div className="tile-kicker">Camera integration</div>
+                <h4>Shoot, and it&apos;s already home.</h4>
+                <p>
+                  Photos move from your camera to the box — no card reader in
+                  between.
+                </p>
+              </div>
+              <div className="mock mock-camera" aria-hidden>
+                <div className="cam-row">
+                  <svg viewBox="0 0 40 40" className="cam-icon">
+                    <path d="M6 14a3 3 0 0 1 3-3h4l2.5-4h9L27 11h4a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z" />
+                    <circle cx="20" cy="21" r="6" />
+                  </svg>
+                  <span className="waves">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className="mini-box">bckup</span>
+                </div>
+                <div className="cam-progress">
+                  <div className="cam-label">
+                    <span>Sending DSC_0118.ARW</span>
+                    <span>118 / 240</span>
+                  </div>
+                  <div className="cam-track">
+                    <i />
+                  </div>
+                </div>
+              </div>
             </article>
           </div>
         </div>
@@ -182,8 +308,10 @@ export default function Home() {
 
       {/* ── quick FAQ ────────────────────────────────────────────────── */}
       <section className="faq" id="faq">
-        <div className="qa-label">Still wondering</div>
-        <h2>A few more questions.</h2>
+        <div className="faq-side">
+          <div className="qa-label">Still wondering</div>
+          <h2>A few more questions.</h2>
+        </div>
         <div className="faq-list">
           <details>
             <summary>Do I need a subscription?</summary>
@@ -218,9 +346,19 @@ export default function Home() {
 
       {/* ── join ─────────────────────────────────────────────────────── */}
       <section className="join" id="join">
-        <h2>Shoot more. Worry less.</h2>
-        <p>Be first in line when the bckup box ships.</p>
-        <Waitlist source="join" cta="Join waitlist" />
+        <div className="join-vf">
+          <span className="vf-corner tl" aria-hidden />
+          <span className="vf-corner tr" aria-hidden />
+          <span className="vf-corner bl" aria-hidden />
+          <span className="vf-corner br" aria-hidden />
+          <h2>
+            Shoot more.
+            <br />
+            Worry less.
+          </h2>
+          <p>Be first in line when the bckup box ships.</p>
+          <Waitlist source="join" cta="Join waitlist" />
+        </div>
       </section>
 
       {/* ── footer ───────────────────────────────────────────────────── */}
@@ -238,119 +376,77 @@ export default function Home() {
   );
 }
 
-/* ── illustration: box with a drive plugged in ─────────────────────────── */
+/* ── product stage: drive → cable → box, photos flying in ──────────────── */
 
-function BoxIllustration() {
+const PHOTO_PATH = "M150 40 C 340 -20, 600 20, 760 210";
+const PHOTO_TINTS = ["#f2a65a", "#5fa8d3", "#7fb069", "#e07a5f", "#c9b6e4"];
+
+function BoxStage() {
   return (
     <svg
-      viewBox="0 0 520 200"
+      viewBox="0 0 1000 420"
+      className="stage-svg"
       role="img"
-      aria-label="A hard disk connected to the bckup box"
-      className="box-svg"
+      aria-label="A hard disk plugged into the bckup box, with photos flowing into it"
     >
+      <defs>
+        <linearGradient id="g-box" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#fbfbfd" />
+          <stop offset="1" stopColor="#d2d2d7" />
+        </linearGradient>
+        <linearGradient id="g-drive" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#3a3a3e" />
+          <stop offset="1" stopColor="#1f1f22" />
+        </linearGradient>
+        <radialGradient id="g-glow">
+          <stop offset="0" stopColor="#4cd38a" stopOpacity="0.9" />
+          <stop offset="1" stopColor="#4cd38a" stopOpacity="0" />
+        </radialGradient>
+        <radialGradient id="g-shadow">
+          <stop offset="0" stopColor="#000" stopOpacity="0.6" />
+          <stop offset="1" stopColor="#000" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+
+      {/* shadows */}
+      <ellipse cx="190" cy="318" rx="130" ry="14" fill="url(#g-shadow)" />
+      <ellipse cx="760" cy="372" rx="190" ry="20" fill="url(#g-shadow)" />
+
       {/* drive */}
-      <rect x="24" y="62" width="150" height="96" rx="12" className="ill-soft" />
-      <circle cx="148" cy="138" r="4" className="ill-dot" />
-      <text x="99" y="116" textAnchor="middle" className="ill-text">
-        Your drive
+      <rect x="80" y="180" width="220" height="128" rx="18" fill="url(#g-drive)" stroke="rgba(255,255,255,0.12)" />
+      <rect x="100" y="270" width="60" height="4" rx="2" fill="rgba(255,255,255,0.18)" />
+      <circle cx="276" cy="284" r="4" fill="#4cd38a" className="blink" />
+      <text x="100" y="222" className="st-label">
+        YOUR DRIVE
+      </text>
+      <text x="100" y="250" className="st-cap">
+        4 TB
       </text>
 
       {/* cable */}
-      <path
-        d="M174 110 C 220 110, 240 110, 290 110"
-        className="ill-line"
-        fill="none"
-      />
+      <path d="M300 244 C 420 244, 480 260, 600 260" stroke="#3a3a3e" strokeWidth="8" fill="none" strokeLinecap="round" />
+      <path d="M300 244 C 420 244, 480 260, 600 260" className="flow" fill="none" />
 
       {/* box */}
-      <rect x="290" y="40" width="200" height="140" rx="22" className="ill-box" />
-      <circle cx="390" cy="152" r="5" className="ill-led" />
-      <text x="390" y="104" textAnchor="middle" className="ill-text-inv">
+      <rect x="600" y="140" width="320" height="226" rx="44" fill="url(#g-box)" />
+      <rect x="600" y="140" width="320" height="226" rx="44" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" />
+      <text x="760" y="262" textAnchor="middle" className="st-brand">
         bckup
       </text>
+      <circle cx="760" cy="326" r="22" fill="url(#g-glow)" className="pulse" />
+      <circle cx="760" cy="326" r="5" fill="#2fbf71" />
 
-      {/* photos flowing in */}
-      <g className="ill-photos">
-        <rect x="318" y="8" width="26" height="20" rx="4" />
-        <rect x="378" y="2" width="26" height="20" rx="4" />
-        <rect x="438" y="10" width="26" height="20" rx="4" />
+      {/* photos flying into the box */}
+      <g className="flyers">
+        {PHOTO_TINTS.map((tint, i) => (
+          <g key={tint}>
+            <rect x="-22" y="-16" width="44" height="32" rx="5" fill={tint} stroke="#fff" strokeWidth="3" opacity="0">
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.15;0.8;1" dur="3s" begin={`${i * 0.6}s`} repeatCount="indefinite" />
+            </rect>
+            <animateMotion path={PHOTO_PATH} dur="3s" begin={`${i * 0.6}s`} repeatCount="indefinite" />
+          </g>
+        ))}
       </g>
-    </svg>
-  );
-}
-
-/* ── icons ─────────────────────────────────────────────────────────────── */
-
-const stroke = {
-  width: 40,
-  height: 40,
-  viewBox: "0 0 40 40",
-  fill: "none",
-  stroke: "currentColor",
-  strokeWidth: 1.6,
-  strokeLinecap: "round" as const,
-  strokeLinejoin: "round" as const,
-  "aria-hidden": true,
-  className: "icon",
-};
-
-function IconDrive() {
-  return (
-    <svg {...stroke}>
-      <rect x="6" y="11" width="28" height="18" rx="3" />
-      <path d="M6 22h28" />
-      <circle cx="28" cy="25.5" r="1.2" />
-    </svg>
-  );
-}
-
-function IconPlug() {
-  return (
-    <svg {...stroke}>
-      <path d="M15 4v8M25 4v8" />
-      <path d="M10 12h20v6a10 10 0 0 1-10 10 10 10 0 0 1-10-10z" />
-      <path d="M20 28v8" />
-    </svg>
-  );
-}
-
-function IconCheck() {
-  return (
-    <svg {...stroke}>
-      <circle cx="20" cy="20" r="14" />
-      <path d="M13.5 20.5l4.5 4.5 8.5-9" />
-    </svg>
-  );
-}
-
-function IconAuto() {
-  return (
-    <svg {...stroke}>
-      <path d="M8 14a13 13 0 0 1 23-4" />
-      <path d="M31 4v6h-6" />
-      <path d="M32 26a13 13 0 0 1-23 4" />
-      <path d="M9 36v-6h6" />
-      <path d="M17 17l6 3-6 3z" />
-    </svg>
-  );
-}
-
-function IconGallery() {
-  return (
-    <svg {...stroke}>
-      <rect x="5" y="7" width="13" height="11" rx="2" />
-      <rect x="22" y="7" width="13" height="11" rx="2" />
-      <rect x="5" y="22" width="13" height="11" rx="2" />
-      <rect x="22" y="22" width="13" height="11" rx="2" />
-    </svg>
-  );
-}
-
-function IconCamera() {
-  return (
-    <svg {...stroke}>
-      <path d="M6 14a3 3 0 0 1 3-3h4l2.5-4h9L27 11h4a3 3 0 0 1 3 3v15a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z" />
-      <circle cx="20" cy="21" r="6" />
     </svg>
   );
 }
