@@ -47,7 +47,7 @@ export async function POST(request: Request) {
         alreadyJoined,
         message: alreadyJoined
           ? "You're already on the list — we'll be in touch."
-          : "You're on the list. We'll write when Macbeth ships.",
+          : "You're on the list. We'll email you when bckup ships.",
       },
       { status: 200 },
     );

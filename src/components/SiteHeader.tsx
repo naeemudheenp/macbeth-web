@@ -1,21 +1,17 @@
-/**
- * Sticky product nav — 52px, translucent white, 1000px column.
- * Ported from "bckup Site.dc.html".
- */
+/** Top nav from the conversation design. The pill CTA jumps to the waitlist. */
 export default function SiteHeader() {
   return (
     <header className="site-header">
-      <nav className="nav">
-        <a className="nav-brand" href="#what">
-          bckup
+      <a className="brand" href="#top">
+        <span className="brand-name">bckup</span>
+      </a>
+      <nav aria-label="Main" className="nav-links">
+        <a href="#box">The Box</a>
+        <a href="#studio">bckup Studio</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#waitlist" className="btn btn-dark">
+          Join waitlist
         </a>
-        <div className="nav-links">
-          <a href="#why">Why</a>
-          <a href="#how">How</a>
-          <a className="is-accent" href="#join">
-            Join waitlist
-          </a>
-        </div>
       </nav>
     </header>
   );

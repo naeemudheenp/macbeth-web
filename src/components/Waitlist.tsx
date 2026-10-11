@@ -12,7 +12,7 @@ type Status = "idle" | "loading" | "ok" | "err";
 
 export default function Waitlist({
   source = "site",
-  cta = "Join",
+  cta = "Join waitlist",
   placeholder = "Email address",
   note = "No account, no spam — one note when it ships, that's all.",
   id,
