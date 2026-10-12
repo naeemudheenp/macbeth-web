@@ -6,6 +6,7 @@ import Screenshot from "@/components/Screenshot";
 import AlbumsDemo from "@/components/AlbumsDemo";
 import AutomationFlow from "@/components/AutomationFlow";
 import Pricing from "@/components/Pricing";
+import ScrollReveal from "@/components/ScrollReveal";
 
 /**
  * Ported from the Claude Design file "bckup — a conversation with
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <div className="page">
       <SiteHeader />
+      <ScrollReveal />
 
       {/* ── hero ─────────────────────────────────────────────────────── */}
       <section id="top" className="hero">

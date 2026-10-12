@@ -54,7 +54,9 @@ body {
 .page {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden makes .page a scroll container, which breaks the
+     sticky Box demo */
+  overflow-x: clip;
 }
 
 a {
@@ -295,7 +297,7 @@ p {
 .hero {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 96px 24px 72px;
+  padding: clamp(64px, 10vw, 128px) 24px clamp(64px, 9vw, 112px);
 }
 
 .hero .eyebrow {
@@ -331,14 +333,35 @@ p {
 .chat {
   max-width: 860px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 64px 24px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
+}
+
+/* a new exchange (bckup answered, you speak again) gets real breathing room;
+   a question and its answer stay close */
+.chat > .ask + .you {
+  margin-top: clamp(64px, 10vw, 128px);
+}
+
+/* …except the opener, which the first answer replies to directly */
+.chat > .ask:first-child + .you {
+  margin-top: 0;
+}
+
+@media (max-width: 560px) {
+  .ask {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .avatar-b {
+    margin-top: 0;
+  }
 }
 
 #studio.chat {
-  padding-top: 24px;
+  padding-top: 32px;
 }
 
 .ask {
@@ -359,7 +382,7 @@ p {
 .ask-body {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 32px;
   min-width: 0;
   flex: 1;
 }
@@ -391,6 +414,39 @@ p {
   line-height: 1.5;
 }
 
+/* scroll reveal — see ScrollReveal.tsx; only active once JS has run */
+
+.reveal-ready .chat > .you,
+.reveal-ready .chat > .ask .ask-text,
+.reveal-ready .chat > .ask .avatar-b,
+.reveal-ready .chat > .ask .ask-body > :not(.ask-text),
+.reveal-ready .interlude-inner,
+.reveal-ready .interlude .shot,
+.reveal-ready .cta {
+  opacity: 0;
+  translate: 0 28px;
+  transition: opacity 0.7s ease, translate 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal-ready .chat > .you.is-in,
+.reveal-ready .chat > .ask.is-in .ask-text,
+.reveal-ready .chat > .ask.is-in .avatar-b,
+.reveal-ready .chat > .ask.is-in .ask-body > :not(.ask-text),
+.reveal-ready .interlude-inner.is-in,
+.reveal-ready .interlude .shot.is-in,
+.reveal-ready .cta.is-in {
+  opacity: 1;
+  translate: none;
+}
+
+/* the answer's demo follows its words a beat later */
+.reveal-ready .chat > .ask .ask-body > :nth-child(2) {
+  transition-delay: 0.15s;
+}
+.reveal-ready .chat > .ask .ask-body > :nth-child(n + 3) {
+  transition-delay: 0.3s;
+}
+
 /* ── cards ─────────────────────────────────────────────────────────────── */
 
 .card {
@@ -406,7 +462,7 @@ p {
 .steps {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 12px;
+  gap: 16px;
 }
 
 .step {
@@ -463,9 +519,15 @@ p {
   letter-spacing: -0.02em;
 }
 
-/* box demo */
+/* box demo — sticky inside a tall track; scroll position = drives plugged in */
+
+.box-track {
+  height: 240vh;
+}
 
 .demo-box {
+  position: sticky;
+  top: clamp(16px, calc(50vh - 330px), 120px);
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -520,7 +582,7 @@ p {
 .cable.in {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: cable-draw 0.6s ease-out forwards;
+  animation: cable-draw 0.5s ease-out 0.35s forwards;
 }
 
 @keyframes cable-draw {
@@ -569,18 +631,78 @@ p {
 
 .drive-g.in {
   transform-box: fill-box;
-  transform-origin: center;
-  animation: drop-in 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.15);
+  transform-origin: 50% 100%;
+  animation: drop-in 0.7s cubic-bezier(0.3, 0.7, 0.2, 1);
 }
 
+/* lowered in from above, lands, settles into the bay */
 @keyframes drop-in {
-  from {
-    transform: translateY(-16px) scale(1.06);
+  0% {
+    transform: translateY(-70px) rotate(-5deg) scale(1.08);
     opacity: 0;
+    filter: drop-shadow(0 22px 14px rgba(11, 31, 23, 0.18));
   }
-  to {
-    transform: none;
+  55% {
+    transform: translateY(3px) rotate(0.5deg) scale(1);
     opacity: 1;
+  }
+  75% {
+    transform: translateY(-2px) scaleY(1.01);
+  }
+  100% {
+    transform: none;
+    filter: drop-shadow(0 4px 5px rgba(11, 31, 23, 0.28));
+  }
+}
+
+.hub-port {
+  fill: #cfd2c9;
+}
+
+.hub-port.on {
+  fill: #2b2f2a;
+}
+
+.hub-port.in {
+  animation: port-on 0.9s ease 0.6s backwards;
+}
+
+@keyframes port-on {
+  0%,
+  40% {
+    fill: #cfd2c9;
+  }
+  55% {
+    fill: #22c55e;
+  }
+  100% {
+    fill: #2b2f2a;
+  }
+}
+
+.plus-tb {
+  font-family: var(--font-body), sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  fill: var(--accent);
+  paint-order: stroke;
+  stroke: #ffffff;
+  stroke-width: 4px;
+  opacity: 0;
+  animation: float-up 1.4s ease-out 0.5s forwards;
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-34px);
   }
 }
 
@@ -601,10 +723,6 @@ p {
   fill: #b8c2b5;
 }
 
-.slot-empty.next {
-  cursor: pointer;
-}
-
 .slot-empty.next rect {
   fill: rgba(198, 243, 107, 0.18);
   stroke: var(--accent);
@@ -614,17 +732,14 @@ p {
   fill: var(--accent);
 }
 
-.slot-empty.next:hover rect {
-  fill: rgba(198, 243, 107, 0.35);
+.slot-empty.next rect {
+  animation: slot-wait 1.6s ease-in-out infinite;
 }
 
-.slot-empty.next:focus {
-  outline: none;
-}
-
-.slot-empty.next:focus-visible rect {
-  stroke-width: 3;
-  stroke-dasharray: none;
+@keyframes slot-wait {
+  50% {
+    fill: rgba(198, 243, 107, 0.4);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -632,8 +747,13 @@ p {
     animation: none;
     stroke-dashoffset: 0;
   }
-  .drive-g.in {
+  .drive-g.in,
+  .hub-port.in,
+  .slot-empty.next rect {
     animation: none;
+  }
+  .plus-tb {
+    display: none;
   }
 }
 
@@ -738,9 +858,55 @@ p {
 
 .demo-actions {
   display: flex;
-  gap: 12px;
+  gap: 12px 16px;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.drive-dots {
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.drive-dots li {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--track);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.drive-dots li.on {
+  background: var(--accent);
+  transform: scale(1.15);
+}
+
+.scroll-meter {
+  flex-basis: 100%;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.scroll-meter span {
+  display: block;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+@media (max-width: 560px) {
+  .box-track {
+    height: 200vh;
+  }
+  .demo-box {
+    padding: 20px;
+    gap: 18px;
+  }
 }
 
 /* screenshots */
@@ -776,7 +942,7 @@ p {
 }
 
 .interlude .shot {
-  margin-top: 40px;
+  margin-top: 56px;
 }
 
 /* nested albums + auto-import */
@@ -1293,14 +1459,14 @@ p {
 
 .interlude {
   max-width: 1200px;
-  margin: 72px auto;
+  margin: clamp(80px, 12vw, 144px) auto;
   padding: 0 24px;
 }
 
 .interlude-inner {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding: 56px 0;
+  padding: clamp(48px, 7vw, 80px) 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -1321,7 +1487,7 @@ p {
 
 .cta-wrap {
   max-width: 1200px;
-  margin: 96px auto 0;
+  margin: clamp(96px, 14vw, 160px) auto 0;
   padding: 0 24px;
 }
 
