@@ -25,7 +25,7 @@ const mono = Geist_Mono({
 export const metadata: Metadata = {
   title: "bckup — a box for your drives, a studio for your work",
   description:
-    "bckup is a box for your hard drives and a studio for your photography — search, client galleries, automations and Wi‑Fi camera import. Studio Basic is ₹399 a month, with no storage fees on your own drives. No lock‑in.",
+    "bckup is a box for your hard drives and a studio for your photography — search, client galleries, automations and Wi‑Fi camera import. Your drives, your photos, no lock‑in.",
   openGraph: {
     title: "bckup — a box for your drives, a studio for your work",
     description:

@@ -1,20 +1,20 @@
 import SiteHeader from "@/components/SiteHeader";
-import Waitlist from "@/components/Waitlist";
+import DemoModal, { BookDemoButton } from "@/components/BookDemo";
 import BoxDemo from "@/components/BoxDemo";
 import BoxProduct from "@/components/BoxProduct";
 import Screenshot from "@/components/Screenshot";
 import AlbumsDemo from "@/components/AlbumsDemo";
 import AutomationFlow from "@/components/AutomationFlow";
-import Pricing from "@/components/Pricing";
 import ScrollReveal from "@/components/ScrollReveal";
 
 /**
  * Ported from the Claude Design file "bckup — a conversation with
  * photographers". The page reads as a chat: bckup asks, the photographer
  * answers, and each answer is met with a live demo or a real screenshot of
- * bckup Studio (public/screens/, captured from the local dev stack). The closing CTA is the
- * waitlist (POST /api/waitlist → Neon) rather than a buy button — nothing
- * ships yet.
+ * bckup Studio (public/screens/, captured from the local dev stack). The closing CTA is
+ * "Book a demo" — a modal that takes a mobile number (POST {Core}/api/public/demo-requests).
+ * Launch onboarding is manual: we call, demo, then create the account and link the box.
+ * No pricing on the page (removed 2026-11-09).
  */
 export default function Home() {
   return (
@@ -35,9 +35,7 @@ export default function Home() {
           we&apos;ll ask, you answer.
         </p>
         <div className="hero-actions">
-          <a href="#waitlist" className="btn btn-dark btn-lg">
-            Join waitlist
-          </a>
+          <BookDemoButton source="hero" className="btn btn-dark btn-lg" />
           <a href="#chat" className="btn btn-ghost btn-lg">
             Start the conversation
             <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -209,30 +207,29 @@ export default function Home() {
           Connect your camera and back up <Mark>straight over Wi‑Fi.</Mark>
         </Ask>
 
-        <You>Okay. So what does all of this cost me?</You>
-        <Ask id="pricing" extra={<Pricing />}>
-          One plan: <Mark>Studio Basic, ₹399 a month.</Mark> No storage fees —
-          the drives are yours.
-        </Ask>
       </section>
 
-      {/* ── waitlist CTA ─────────────────────────────────────────────── */}
-      <section id="waitlist" className="cta-wrap">
+      {/* ── book-a-demo CTA ──────────────────────────────────────────── */}
+      <section id="demo" className="cta-wrap">
         <div className="cta">
           <h2 className="display">
             So… shall we <Mark>bckup</Mark> your work?
           </h2>
           <p className="cta-lede">
-            Your Box, your drives, and bckup Studio Basic for ₹399 a month. No
-            storage fees, and your photos stay yours. Leave your email and we&apos;ll
-            tell you the moment it ships.
+            Your Box, your drives, and bckup Studio — and your photos stay
+            yours. Book a demo and we&apos;ll walk you through it, then set your
+            Box up for you.
           </p>
-          <Waitlist source="cta" cta="Join waitlist" />
-          <a href="#studio" className="btn btn-outline-light">
-            See Studio again
-          </a>
+          <div className="cta-actions">
+            <BookDemoButton source="cta" className="btn btn-mark btn-lg" />
+            <a href="#studio" className="btn btn-outline-light">
+              See Studio again
+            </a>
+          </div>
         </div>
       </section>
+
+      <DemoModal />
 
       <footer className="site-footer">
         <span>bckup · Your photos. Your drives. Always yours.</span>
