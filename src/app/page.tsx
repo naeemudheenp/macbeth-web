@@ -14,7 +14,9 @@ import ScrollReveal from "@/components/ScrollReveal";
  * bckup Studio (public/screens/, captured from the local dev stack). The closing CTA is
  * "Book a demo" — a modal that takes a mobile number (POST {Core}/api/public/demo-requests).
  * Launch onboarding is manual: we call, demo, then create the account and link the box.
- * No pricing on the page (removed 2026-11-09).
+ * No pricing on the page (removed 2026-11-09). Second copies, the 50 GB cloud
+ * copy and guest "Find my photos" were added 2026-11-21 — the cloud copy
+ * (relay → B2) was announced here before its bucket was live, at the user's call.
  */
 export default function Home() {
   return (
@@ -95,6 +97,21 @@ export default function Home() {
           it.
         </Ask>
 
+        <You>And if a drive dies on me? That&apos;s my nightmare.</You>
+        <Ask
+          extra={
+            <p className="body-lg">
+              Every upload from Studio also gets a <Mark>cloud copy</Mark> on
+              Backblaze B2: 50&nbsp;GB included, no plan to buy. Your latest work is safe
+              before it even reaches the Box, and client galleries keep opening
+              while the Box is off.
+            </p>
+          }
+        >
+          New photos and your favourites live on <Mark>two drives at once.</Mark>{" "}
+          Plug in a second one and it starts by itself.
+        </Ask>
+
         <You>And if I ever want to leave?</You>
         <Ask>
           Unplug your drives and walk. <Mark>No lock‑in. Always yours.</Mark>
@@ -150,6 +167,23 @@ export default function Home() {
         >
           Publish a <Mark>client gallery</Mark> with one link. Slideshow,
           QR code and client favorites — all built in.
+        </Ask>
+
+        <You>
+          After a wedding, every guest messages me asking for the photos
+          they&apos;re in.
+        </You>
+        <Ask
+          extra={
+            <p className="body-lg">
+              The selfie is never stored, and no photo leaves your gallery.
+              bckup keeps only a face pattern, and deletes it two days after
+              the last guest search.
+            </p>
+          }
+        >
+          Turn on <Mark>Find my photos.</Mark> A guest takes a quick selfie
+          and sees just the shots they&apos;re in.
         </Ask>
 
         <You>

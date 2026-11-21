@@ -6,8 +6,8 @@ import DemoModal, { BookDemoButton } from "@/components/BookDemo";
 /**
  * /compare — bckup against the kinds of tools photographers use today.
  * Compares product *categories*, not individual products, and only on things
- * bckup really does today: no claim here about always-online galleries, guest
- * selfie search or a second copy, which bckup does not have yet. No pricing
+ * bckup really does. Guest selfie search and second copies (two drives + the
+ * 50 GB cloud copy) were added 2026-11-21 once built. No pricing
  * (removed from the site 2026-11-09). Research behind it: 2026-11-21.
  */
 export const metadata: Metadata = {
@@ -93,6 +93,28 @@ const ROWS: { label: string; cells: Cell[] }[] = [
       { v: "part", note: "share links" },
       { v: "part", note: "share links" },
       { v: "no" },
+    ],
+  },
+  {
+    label: "Guests find their own photos with a selfie",
+    cells: [
+      { v: "yes", note: "selfie never kept" },
+      { v: "part", note: "some apps" },
+      { v: "yes" },
+      { v: "no" },
+      { v: "no" },
+      { v: "no" },
+    ],
+  },
+  {
+    label: "A second copy of new work and favourites, without paying per TB",
+    cells: [
+      { v: "yes", note: "2 drives + 50 GB cloud" },
+      { v: "part", note: "finals only" },
+      { v: "part", note: "event photos only" },
+      { v: "part", note: "pay per TB" },
+      { v: "part", note: "RAID, set up yourself" },
+      { v: "no", note: "copy by hand" },
     ],
   },
   {
