@@ -1879,3 +1879,10 @@ p {
 .price-card .btn {
   margin-top: auto;
 }
+
+/* A link inside running text (2026-11-22). */
+.inline-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

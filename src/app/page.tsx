@@ -35,8 +35,8 @@ export default function Home() {
           <Mark>Let&apos;s talk about everything after.</Mark>
         </h1>
         <p className="lede">
-          bckup is a box for your drives and a studio for your work. Scroll —
-          we&apos;ll ask, you answer.
+          bckup is a studio for your work — in the cloud, or with a box for
+          your own drives. Scroll — we&apos;ll ask, you answer.
         </p>
         <div className="hero-actions">
           <BookDemoButton source="hero" className="btn btn-dark btn-lg" />
@@ -117,6 +117,26 @@ export default function Home() {
         <You>And if I ever want to leave?</You>
         <Ask>
           Unplug your drives and walk. <Mark>No lock‑in. Always yours.</Mark>
+        </Ask>
+
+        {/* Cloud-only accounts (2026-11-22, the user): no box, no drives. */}
+        <You>
+          Hmm. What if I don&apos;t want any hardware at all? Just upload and
+          go?
+        </You>
+        <Ask
+          id="cloud"
+          extra={
+            <p className="body-lg">
+              Sign in from any browser and upload — your work lives in the
+              cloud, <Mark>50&nbsp;GB or 100&nbsp;GB</Mark>, and nothing is ever
+              cleared out to make room. When your archive outgrows it, add a Box
+              and keep every shoot on drives you own.{" "}
+              <a href="#pricing" className="inline-link">See the plans</a>.
+            </p>
+          }
+        >
+          Then skip the Box. <Mark>bckup works in the cloud too.</Mark>
         </Ask>
       </section>
 
