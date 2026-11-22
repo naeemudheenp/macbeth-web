@@ -14,7 +14,9 @@ import ScrollReveal from "@/components/ScrollReveal";
  * bckup Studio (public/screens/, captured from the local dev stack). The closing CTA is
  * "Book a demo" — a modal that takes a mobile number (POST {Core}/api/public/demo-requests).
  * Launch onboarding is manual: we call, demo, then create the account and link the box.
- * No pricing on the page (removed 2026-11-09). Second copies, the 50 GB cloud
+ * Pricing is back (2026-11-22, the user): Cloud and Cloud + Box, 50 GB ₹399 /
+ * 100 GB ₹499 a month, the Box one-time and quoted on the demo — see the
+ * Pricing section and docs/PRD.md "Plans". Second copies, the 50 GB cloud
  * copy and guest "Find my photos" were added 2026-11-21 — the cloud copy
  * (relay → B2) was announced here before its bucket was live, at the user's call.
  */
@@ -93,7 +95,7 @@ export default function Home() {
           where they get you.
         </You>
         <Ask extra={<BoxDemo />}>
-          You just add another hard drive. <Mark>No storage plan.</Mark> You own
+          You just add another hard drive. <Mark>No fee for it.</Mark> You own
           it.
         </Ask>
 
@@ -102,7 +104,7 @@ export default function Home() {
           extra={
             <p className="body-lg">
               Every upload from Studio also gets a <Mark>cloud copy</Mark> on
-              Backblaze B2: 50&nbsp;GB included, no plan to buy. Your latest work is safe
+              Backblaze B2: 50&nbsp;GB on every plan, 100&nbsp;GB if you need it. Your latest work is safe
               before it even reaches the Box, and client galleries keep opening
               while the Box is off.
             </p>
@@ -243,6 +245,48 @@ export default function Home() {
 
       </section>
 
+      {/* ── pricing (2026-11-22) ──────────────────────────────────────── */}
+      <section id="pricing" className="pricing" aria-labelledby="pricing-title">
+        <p className="eyebrow">Pricing</p>
+        <h2 id="pricing-title" className="display">
+          Pay for the cloud. <Mark>Own the rest.</Mark>
+        </h2>
+        <p className="body-lg">
+          Every plan includes bckup Studio — search, albums, client galleries
+          and Find my photos for your guests. Monthly, in rupees.
+        </p>
+
+        <div className="pricing-grid">
+          <article className="card price-card">
+            <h3 className="price-name">Cloud</h3>
+            <p className="muted">No box, no drives. Sign in and start uploading.</p>
+            <CloudTiers />
+            <ul className="price-points">
+              <li>Studio in any browser, on any computer</li>
+              <li>Client galleries and guest Find my photos</li>
+              <li>More than 100&nbsp;GB? Talk to us.</li>
+            </ul>
+            <BookDemoButton source="pricing-cloud" className="btn btn-dark" />
+          </article>
+
+          <article className="card price-card price-card-featured">
+            <h3 className="price-name">Cloud + Box</h3>
+            <p className="muted">Everything you shoot, kept for good on drives you own.</p>
+            <CloudTiers />
+            <p className="price-box">
+              <strong>+ the Box</strong> — one-time, quoted on your demo
+            </p>
+            <ul className="price-points">
+              <li>Every shoot on your own drives. Add one when it fills — no fee for it</li>
+              <li>New photos and favourites on two drives at once</li>
+              <li>Leave any time: your drives open on any Mac or PC</li>
+            </ul>
+            <BookDemoButton source="pricing-box" className="btn btn-mark" />
+          </article>
+        </div>
+        <p className="muted-sm">Bring an empty drive (exFAT), or get one from us.</p>
+      </section>
+
       {/* ── book-a-demo CTA ──────────────────────────────────────────── */}
       <section id="demo" className="cta-wrap">
         <div className="cta">
@@ -372,5 +416,25 @@ function IconCheck() {
     <svg {...line}>
       <path d="M20 6 9 17l-5-5" />
     </svg>
+  );
+}
+
+/** The two cloud allowances, shared by both plans (docs/PRD.md "Plans", 2026-11-22). */
+function CloudTiers() {
+  return (
+    <dl className="price-tiers">
+      <div>
+        <dt>50 GB cloud</dt>
+        <dd>
+          ₹399<span>/month</span>
+        </dd>
+      </div>
+      <div>
+        <dt>100 GB cloud</dt>
+        <dd>
+          ₹499<span>/month</span>
+        </dd>
+      </div>
+    </dl>
   );
 }

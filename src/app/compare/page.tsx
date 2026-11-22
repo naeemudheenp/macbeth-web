@@ -7,13 +7,14 @@ import DemoModal, { BookDemoButton } from "@/components/BookDemo";
  * /compare — bckup against the kinds of tools photographers use today.
  * Compares product *categories*, not individual products, and only on things
  * bckup really does. Guest selfie search and second copies (two drives + the
- * 50 GB cloud copy) were added 2026-11-21 once built. No pricing
- * (removed from the site 2026-11-09). Research behind it: 2026-11-21.
+ * 50 GB cloud copy) were added 2026-11-21 once built. Pricing lives on the
+ * home page (2026-11-22); "no storage plan" became "no fee per drive" then,
+ * since the cloud is now a paid allowance. Research behind it: 2026-11-21.
  */
 export const metadata: Metadata = {
   title: "How bckup compares — bckup",
   description:
-    "bckup next to gallery apps, event photo apps, cloud storage, NAS boxes and loose hard drives: no storage plan, every RAW kept, every shoot searchable, and your photos stay yours.",
+    "bckup next to gallery apps, event photo apps, cloud storage, NAS boxes and loose hard drives: no fee per drive, every RAW kept, every shoot searchable, and your photos stay yours.",
 };
 
 type Mark = "yes" | "part" | "no";
@@ -30,7 +31,7 @@ const COLUMNS = [
 
 const ROWS: { label: string; cells: Cell[] }[] = [
   {
-    label: "Storage grows with drives you own — no storage plan",
+    label: "Storage grows with drives you own — no fee per drive",
     cells: [
       { v: "yes" },
       { v: "no", note: "plan limits" },
@@ -153,9 +154,10 @@ export default function Compare() {
       </section>
 
       <section className="compare-wins" aria-label="What bckup does differently">
-        <Win n="01" title="No storage plan. Ever.">
-          Your space is your drives. When one fills up, plug in another — no
-          upgrade, no monthly bill that grows with your career.
+        <Win n="01" title="No bill that grows with your archive.">
+          Your archive lives on your drives. When one fills up, plug in another
+          — no upgrade, no per-TB fee. The cloud is a fixed allowance for recent
+          work.
         </Win>
         <Win n="02" title="Every RAW, every video.">
           Not just the edited JPEGs a gallery app keeps. Ten years of originals,

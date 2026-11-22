@@ -17,6 +17,7 @@ export default function SiteHeader() {
       <nav aria-label="Main" className="nav-links">
         <Link href="/#box">The Box</Link>
         <Link href="/#studio">bckup Studio</Link>
+        <Link href="/#pricing">Pricing</Link>
         <Link href="/compare">Compare</Link>
         {STUDIO ? <a href={`${STUDIO}/signin`}>Sign in</a> : null}
         <BookDemoButton source="header" className="btn btn-dark" />

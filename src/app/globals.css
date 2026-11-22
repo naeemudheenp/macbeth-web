@@ -1758,3 +1758,124 @@ p {
     display: block;
   }
 }
+
+/* ── pricing (2026-11-22) ──────────────────────────────────────────────── */
+
+.pricing {
+  max-width: 1200px;
+  margin: clamp(96px, 14vw, 160px) auto 0;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pricing h2 {
+  font-size: clamp(36px, 4.6vw, 60px);
+  line-height: 1.04;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.price-card {
+  padding: clamp(24px, 3.5vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.price-card-featured {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+
+.price-name {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.price-tiers {
+  width: 100%;
+  margin: 4px 0 0;
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.price-tiers > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.price-tiers dt {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.price-tiers dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.price-tiers dd span {
+  margin-left: 2px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+.price-box {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.price-points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.price-points li {
+  position: relative;
+  padding-left: 22px;
+}
+
+.price-points li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.5em;
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+.price-card .btn {
+  margin-top: auto;
+}

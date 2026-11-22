@@ -94,7 +94,7 @@ export default function BoxDemo() {
       ? "Almost full. Keep scrolling to plug another drive into the hub."
       : drives < MAX_BAYS
         ? "Still one library — just more room. Nothing to upgrade, nothing to renew."
-        : "Four drives connected — 8 TB, and still no storage fees.";
+        : "Four drives connected — 8 TB, and still no fee for any of them.";
 
   return (
     <div className="box-track" ref={trackRef}>
@@ -216,7 +216,7 @@ export default function BoxDemo() {
             <dd>{tb(capacity - LIBRARY_TB)}</dd>
           </div>
           <div>
-            <dt>Storage fees</dt>
+            <dt>Drive fees</dt>
             <dd className="accent">₹0</dd>
           </div>
         </dl>

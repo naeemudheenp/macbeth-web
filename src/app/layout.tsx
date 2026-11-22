@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "bckup — a box for your drives, a studio for your work",
     description:
-      "Plug in your drives, join your Wi‑Fi, done. Add a drive when it fills up. No storage fees, and your photos are always yours.",
+      "Plug in your drives, join your Wi‑Fi, done. Add a drive when it fills up — no fee for it — and your photos are always yours.",
     type: "website",
   },
 };
