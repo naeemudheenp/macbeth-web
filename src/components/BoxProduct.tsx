@@ -53,7 +53,7 @@ export default function BoxProduct({
           <stop offset="1" stopColor="#c9ccc2" stopOpacity="0.9" />
         </linearGradient>
         <filter id={`shadow-${id}`} x="-20%" y="-20%" width="140%" height="150%">
-          <feDropShadow dx="0" dy="8" stdDeviation="9" floodColor="#0B1F17" floodOpacity="0.22" />
+          <feDropShadow dx="0" dy="8" stdDeviation="9" floodColor="#17131f" floodOpacity="0.22" />
         </filter>
         <filter id={`glow-${id}`} x="-300%" y="-300%" width="700%" height="700%">
           <feGaussianBlur stdDeviation="3" />
@@ -106,8 +106,8 @@ export default function BoxProduct({
       </text>
 
       {/* status light on the front edge */}
-      <circle cx="120" cy="220" r="5" fill="#C6F36B" opacity="0.8" filter={`url(#glow-${id})`} />
-      <rect x="113" y="219" width="14" height="3" rx="1.5" fill="#7ccf3a" />
+      <circle cx="120" cy="220" r="5" fill="#9b6bff" opacity="0.8" filter={`url(#glow-${id})`} />
+      <rect x="113" y="219" width="14" height="3" rx="1.5" fill="#9b6bff" />
     </svg>
   );
 }

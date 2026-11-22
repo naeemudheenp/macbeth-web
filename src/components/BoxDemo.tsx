@@ -308,7 +308,7 @@ function Hdd({
         cy="52"
         r={r}
         fill="none"
-        stroke={hot ? "#C2410C" : "#0E5A3A"}
+        stroke={hot ? "#C2410C" : "#6a3fd9"}
         strokeOpacity="0.85"
         strokeWidth="6"
         strokeDasharray={`${used * circ} ${circ}`}
@@ -338,8 +338,8 @@ function Hdd({
       </g>
 
       {/* label */}
-      <rect x="9" y="114" width="82" height="25" rx="2.5" fill="#0B1F17" />
-      <text x="15" y="125" fontSize="7" fontFamily="var(--font-code), monospace" fill="#C6F36B">
+      <rect x="9" y="114" width="82" height="25" rx="2.5" fill="#17131f" />
+      <text x="15" y="125" fontSize="7" fontFamily="var(--font-code), monospace" fill="#9b6bff">
         {DRIVE_TB} TB
       </text>
       <text x="15" y="134" fontSize="5.5" fontFamily="var(--font-code), monospace" fill="#ffffff" fillOpacity="0.6">

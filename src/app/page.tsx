@@ -213,7 +213,7 @@ export default function Home() {
             <>
               <div className="card camera">
                 <div className="camera-end">
-                  <svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#0B1F17" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg aria-hidden="true" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#17131f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z" />
                     <circle cx="12" cy="13" r="3.5" />
                   </svg>
@@ -386,7 +386,7 @@ const line = {
   height: 28,
   viewBox: "0 0 24 24",
   fill: "none",
-  stroke: "#0B1F17",
+  stroke: "#17131f",
   strokeWidth: 1.6,
   strokeLinecap: "round" as const,
   strokeLinejoin: "round" as const,
