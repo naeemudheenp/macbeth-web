@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 import DemoModal, { BookDemoButton } from "@/components/BookDemo";
 
 /**
@@ -254,14 +255,7 @@ export default function Compare() {
 
       <DemoModal />
 
-      <footer className="site-footer">
-        <span>bckup · Your photos. Your drives. Always yours.</span>
-        <div className="site-footer-links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="mailto:hello@bckup.net">hello@bckup.net</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
